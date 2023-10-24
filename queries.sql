@@ -31,3 +31,25 @@ WHERE name != 'Gabumon';
 -- Find all animals with a weight between 10.4kg and 17.3kg (including the animals with weights equal to 10.4kg or 17.3kg)
 SELECT * FROM animals
 WHERE weight_kg BETWEEN 10.4 AND 17.3;
+
+-----------------------------------------------
+
+/*
+  * The following code starts a transaction, updates the "species" column to "unspecified," verifies the change within the transaction, and then rolls back the transaction. Finally, it verifies that the "species" column has returned to its original state. 
+*/
+-- Start a transaction
+BEGIN;
+
+-- Update the "species" column to "unspecified"
+UPDATE animals SET species = 'unspecified';
+
+-- Verify that the change was made (Check the "species" column)
+SELECT * FROM animals;
+
+-- Roll back the transaction
+ROLLBACK;
+
+-- Verify that the "species" column returns to its original state
+SELECT * FROM animals;
+
+-----------------------------------------------
