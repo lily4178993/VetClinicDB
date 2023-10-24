@@ -19,3 +19,12 @@ COMMENT ON COLUMN animals.date_of_birth IS 'Date of birth of the animal';
 COMMENT ON COLUMN animals.escape_attempts IS 'Number of escape attempts made by the animal';
 COMMENT ON COLUMN animals.neutered IS 'Indicates if the animal is neutered (true/false)';
 COMMENT ON COLUMN animals.weight_kg IS 'Weight of the animal in kilograms';
+
+
+/* =========== Update "animals" table =========== */
+
+-- Add a column species of type string to the "animals" table
+ALTER TABLE animals ADD COLUMN species VARCHAR(255);
+
+-- Add comments to the "species" columns of the "animals" table
+COMMENT ON COLUMN animals.species IS 'Specy of the animal';
