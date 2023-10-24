@@ -53,3 +53,32 @@ ROLLBACK;
 SELECT * FROM animals;
 
 -----------------------------------------------
+
+/*
+  * This code begins a transaction, updates the "species" column
+    1. to "digimon" for all animals that have a name ending in "mon"
+    2. to "pokemon" for all animals that don't have a species already set.
+
+  * This code verifies changes within the transaction, commits the changes, and verifies that the changes persist after the commit.
+*/
+-- Start a transaction
+BEGIN;
+
+-- Update "species" to "digimon" for animals with names ending in "mon"
+UPDATE animals SET species = 'digimon'
+WHERE name LIKE '%mon';
+
+-- Update "species" to "pokemon" for animals without a species set
+UPDATE animals SET species = 'pokemon'
+WHERE species IS NULL;
+
+-- Verify changes within the transaction
+SELECT * FROM animals;
+
+-- Commit the transaction
+COMMIT;
+
+-- Verify that changes persist after the commit
+SELECT * FROM animals;
+
+-----------------------------------------------
