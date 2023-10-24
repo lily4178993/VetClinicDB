@@ -82,3 +82,24 @@ COMMIT;
 SELECT * FROM animals;
 
 -----------------------------------------------
+
+/*
+  * This code begins a transaction,
+  * deletes all records in the "animals" table,
+  * rolls back the transaction,
+  * verifies if all records in the "animals" table still exist.
+*/
+
+-- Start a transaction
+BEGIN;
+
+-- Delete all records in the "animals" table
+DELETE FROM animals;
+
+-- Roll back the transaction
+ROLLBACK;
+
+-- Verify if all records in the "animals" table still exist
+SELECT * FROM animals;
+
+-----------------------------------------------
