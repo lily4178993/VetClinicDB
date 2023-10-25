@@ -55,3 +55,19 @@ COMMENT ON TABLE species IS 'Table containing information about different animal
 COMMENT ON COLUMN species.id IS 'Unique identifier for species';
 COMMENT ON COLUMN species.name IS 'Name of the species';
 
+/* =========== Update "animals" table =========== */
+-- Remove the "species" column
+ALTER TABLE animals
+DROP COLUMN species;
+
+-- Add the "species_id" column as a foreign key
+ALTER TABLE animals
+ADD COLUMN species_id INT REFERENCES species(id);
+
+-- Add the "owner_id" column as a foreign key
+ALTER TABLE animals
+ADD COLUMN owner_id INT REFERENCES owners(id);
+
+-- Add a primary key constraint to the "id" column
+ALTER TABLE animals
+ADD PRIMARY KEY (id);
