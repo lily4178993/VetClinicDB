@@ -45,3 +45,13 @@ WHERE
       WHEN a.name LIKE '%mon' THEN s.name = 'Digimon'
       ELSE s.name = 'Pokemon'
   END;
+
+-- Update animals to set owner_id based on owner's name
+UPDATE animals AS a
+SET owner_id = o.id
+FROM owners AS o
+WHERE a.name = 'Agumon' AND o.full_name = 'Sam Smith'
+  OR a.name IN ('Gabumon', 'Pikachu') AND o.full_name = 'Jennifer Orwell'
+  OR a.name IN ('Devimon', 'Plantmon') AND o.full_name = 'Bob'
+  OR a.name IN ('Charmander', 'Squirtle', 'Blossom') AND o.full_name = 'Melody Pond'
+  OR a.name IN ('Angemon', 'Boarmon') AND o.full_name = 'Dean Winchester';
