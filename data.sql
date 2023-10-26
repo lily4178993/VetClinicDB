@@ -60,28 +60,28 @@ WHERE a.name = 'Agumon' AND o.full_name = 'Sam Smith'
 -- Insert data for vets
 INSERT INTO vets (name, age, date_of_graduation)
 VALUES
-  ('Vet William Tatcher', 45, '2000-04-23'),
-  ('Vet Maisy Smith', 26, '2019-01-17'),
-  ('Vet Stephanie Mendez', 64, '1981-05-04'),
-  ('Vet Jack Harkness', 38, '2008-06-08');
+  ('William Tatcher', 45, '2000-04-23'),
+  ('Maisy Smith', 26, '2019-01-17'),
+  ('Stephanie Mendez', 64, '1981-05-04'),
+  ('Jack Harkness', 38, '2008-06-08');
 
 -- Insert data for vet specializations
 INSERT INTO specializations (vet_id, species_id)
 SELECT v.id AS vet_id, s.id AS species_id FROM vets AS v
-JOIN species AS s ON v.name = 'Vet William Tatcher' AND s.name = 'Pokemon'
+JOIN species AS s ON v.name = 'William Tatcher' AND s.name = 'Pokemon'
 UNION
 SELECT v.id AS vet_id, s.id AS species_id FROM vets AS v
-JOIN species AS s ON v.name = 'Vet Stephanie Mendez' AND (s.name = 'Digimon' OR s.name = 'Pokemon')
+JOIN species AS s ON v.name = 'Stephanie Mendez' AND (s.name = 'Digimon' OR s.name = 'Pokemon')
 UNION
 SELECT v.id AS vet_id, s.id AS species_id FROM vets AS v
-JOIN species AS s ON v.name = 'Vet Jack Harkness' AND s.name = 'Digimon';
+JOIN species AS s ON v.name = 'Jack Harkness' AND s.name = 'Digimon';
 
 -- Insert data for visits
 INSERT INTO visits (animal_id, vet_id, visit_date)
 VALUES
-  ((SELECT id FROM animals WHERE name = 'Agumon'), (SELECT id FROM vets WHERE name = 'Vet William Tatcher'), '2020-05-24'::DATE),
-  ((SELECT id FROM animals WHERE name = 'Agumon'), (SELECT id FROM vets WHERE name = 'Vet Stephanie Mendez'), '2020-07-22'::DATE),
-  ((SELECT id FROM animals WHERE name = 'Gabumon'), (SELECT id FROM vets WHERE name = 'Vet Jack Harkness'), '2021-02-02'::DATE),
+  ((SELECT id FROM animals WHERE name = 'Agumon'), (SELECT id FROM vets WHERE name = 'William Tatcher'), '2020-05-24'::DATE),
+  ((SELECT id FROM animals WHERE name = 'Agumon'), (SELECT id FROM vets WHERE name = 'Stephanie Mendez'), '2020-07-22'::DATE),
+  ((SELECT id FROM animals WHERE name = 'Gabumon'), (SELECT id FROM vets WHERE name = 'Jack Harkness'), '2021-02-02'::DATE),
   ((SELECT id FROM animals WHERE name = 'Pikachu'), (SELECT id FROM vets WHERE name = 'Maisy Smith'), '2020-01-05'::DATE),
   ((SELECT id FROM animals WHERE name = 'Pikachu'), (SELECT id FROM vets WHERE name = 'Maisy Smith'), '2020-03-08'::DATE),
   ((SELECT id FROM animals WHERE name = 'Pikachu'), (SELECT id FROM vets WHERE name = 'Maisy Smith'), '2020-05-14'::DATE),
