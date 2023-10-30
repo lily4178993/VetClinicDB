@@ -43,6 +43,10 @@ COMMENT ON COLUMN owners.id IS 'Unique identifier for each owner';
 COMMENT ON COLUMN owners.full_name IS 'Full name of the owner';
 COMMENT ON COLUMN owners.age IS 'Age of the owner';
 
+/* =========== Update "owners" table =========== */
+-- Add an email column to your owners table
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
+
 /* =========== Create "species" table =========== */
 CREATE TABLE species
 (
@@ -121,4 +125,23 @@ COMMENT ON TABLE visits IS 'Join table for animal visits to vets';
 COMMENT ON COLUMN visits.id IS 'Unique identifier for each visit';
 COMMENT ON COLUMN visits.animal_id IS 'Foreign key referencing the visiting animal';
 COMMENT ON COLUMN visits.vet_id IS 'Foreign key referencing the veterinarian visited';
-COMMENT ON COLUMN visits.visit_date IS 'Date of the animal's visit';
+COMMENT ON COLUMN visits.visit_date IS 'Date of the animals visit';
+
+/* =========== Update "visits" table =========== */
+-- Rename visit_date column to date_of_visit
+ALTER TABLE visits RENAME COLUMN visit_date TO date_of_visit;
+
+/* ===========
+ Create indexes on email, vet_id, and animal_id columns for optimization
+ =========== */
+--  Create an index on the `animal_id` column in the `visits` table
+CREATE INDEX idx_animal_id
+ON visits (animal_id);
+
+--  Create an index on the `vet_id` column in the `visits` table
+CREATE INDEX idx_vet_id
+ON visits (vet_id);
+
+--  Create an index on the `email` column of the `owners` table
+CREATE INDEX idx_email
+ON owners (email);
