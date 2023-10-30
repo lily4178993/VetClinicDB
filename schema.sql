@@ -130,3 +130,18 @@ COMMENT ON COLUMN visits.visit_date IS 'Date of the animals visit';
 /* =========== Update "visits" table =========== */
 -- Rename visit_date column to date_of_visit
 ALTER TABLE visits RENAME COLUMN visit_date TO date_of_visit;
+
+/* ===========
+ Create indexes on email, vet_id, and animal_id columns for optimization
+ =========== */
+--  Create an index on the `animal_id` column in the `visits` table
+CREATE INDEX idx_animal_id
+ON visits (animal_id);
+
+--  Create an index on the `vet_id` column in the `visits` table
+CREATE INDEX idx_vet_id
+ON visits (vet_id);
+
+--  Create an index on the `email` column of the `owners` table
+CREATE INDEX idx_email
+ON owners (email);
